@@ -1,0 +1,21 @@
+{
+  "name": "stack-comparisons",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev:legacy": "pnpm run dev --filter legacy",
+    "dev:modern": "pnpm run dev --filter modern",
+    "build:legacy": "pnpm run build --filter legacy",
+    "build:modern": "pnpm run build --filter modern",
+    "start:all": "concurrently \"pnpm run dev:legacy\" \"pnpm run dev:modern\"",
+    "benchmark:build": "chmod +x benchmark/build-times.sh && ./benchmark/build-times.sh",
+    "benchmark:api": "tsx benchmark/api-performance.ts",
+    "benchmark": "pnpm run benchmark:build && pnpm run benchmark:api"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "concurrently": "^8.2.2",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3"
+  }
+} 
