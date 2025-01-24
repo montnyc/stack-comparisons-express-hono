@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Create necessary directories
+echo "Creating benchmark directories..."
+mkdir -p benchmark/results
+
 # Clean previous builds
 echo "Cleaning previous builds..."
 rm -rf legacy/dist modern/dist
@@ -15,6 +19,8 @@ hyperfine \
   --runs 5 \
   --export-json benchmark/results/build-times.json \
   --prepare 'rm -rf legacy/dist modern/dist' \
+  --ignore-failure \
+  --show-output \
   'pnpm run build:legacy' \
   'pnpm run build:modern'
 
